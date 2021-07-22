@@ -8,7 +8,7 @@ class Footer extends Component {
     return (
       <div id="footer">
         <p>
-          © 2020 |
+          © 2021 |
           <a href="https://belajarbarengyanto.wordpress.com/">
             belajarbarengyanto.wordpress.com
           </a>

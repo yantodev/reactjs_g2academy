@@ -1,73 +1,73 @@
-// import React, { Component } from "react";
-import Badge from "react-bootstrap/Badge";
-import Table from "react-bootstrap/Table";
+import React, { Component } from "react";
+import axios from "axios";
+import { Badge, Table } from "react-bootstrap";
 
-const Body = function () {
-  let profil = {
-    nama: ["Eko", "Yadi"],
-    email: ["eko@gmail.com", "yadi@mail.com"],
-    address: ["Jogja", "Semarang"],
-  };
-  return (
-    <div id="container">
-      <h2 class="text-center">
-        <b>Data Mahasiswa</b>
-      </h2>
-      <button class="btn btn-primary mb-3" onclick="addRow();">
-        ADD Data
-      </button>
-      <div id="table_crud">
-        <Table striped bordered hover variant="dark">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Address</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>{profil.nama[0]}</td>
-              <td>{profil.email[0]}</td>
-              <td>{profil.address[0]}</td>
-              <td>
-                <Badge pill bg="primary">
-                  Edit
-                </Badge>{" "}
-                <Badge pill bg="danger">
-                  Hapus
-                </Badge>{" "}
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>{profil.nama[1]}</td>
-              <td>{profil.email[1]}</td>
-              <td>{profil.address[1]}</td>
-              <td>
-                <Badge pill bg="primary">
-                  Edit
-                </Badge>{" "}
-                <Badge pill bg="danger">
-                  Hapus
-                </Badge>{" "}
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      </div>
-      <div class="pagination">
-        <span>Prev</span>
-        <span>1</span>
-        <span class="active">2</span>
-        <span>3</span>
-        <span>Next</span>
-      </div>
-    </div>
-  );
-};
+export default class Body extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+  }
+  getData() {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users?_start=0&_limit=5")
+      .then((res) => {
+        var data = res.data;
+        this.setState({ data: data });
 
-export default Body;
+        console.log(data);
+      });
+  }
+  componentDidMount() {
+    this.getData();
+  }
+  render() {
+    return (
+      <>
+        <div id="container">
+          <h2 className="text-center">
+            <b>Data Mahasiswa</b>
+          </h2>
+          <button className="btn btn-primary mb-3">ADD Data</button>
+          {/* <div id="table_crud"></div> */}
+          <Table striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.data.map((d) => (
+                <tr key={d.id}>
+                  <td>{d.id}</td>
+                  <td>{d.name}</td>
+                  <td>{d.username}</td>
+                  <td>{d.email}</td>
+                  <td>
+                    <Badge bg="primary">Edit</Badge>
+                    <br></br>
+                    <Badge bg="danger">Hapus</Badge>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+        <div className="pagination">
+          <span>Prev</span>
+          <span>1</span>
+          <span className="active">2</span>
+          <span>3</span>
+          <span>Next</span>
+        </div>
+      </>
+    );
+  }
+}
+
+// export default Body;

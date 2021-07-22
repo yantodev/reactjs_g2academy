@@ -4,12 +4,12 @@ class Header extends Component {
   render() {
     return (
       <div id="header">
-        <span class="logo">
+        <span className="logo">
           <a href="index.html">Yanto.web</a>
         </span>
-        <span class="website-menu">
+        <span className="website-menu">
           <a href="/template/frontend/index.html">Home</a>
-          <a href="/template/frontend/about.html">About</a>
+          <a href="/">About</a>
           <a href="/template/frontend/login.html">Login</a>
         </span>
       </div>
