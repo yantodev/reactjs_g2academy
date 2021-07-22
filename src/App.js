@@ -1,18 +1,20 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from "react";
-import Header from "./Header";
-import Body from "./Body";
-import Footer from "./Footer";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
+import Konten from "./Konten";
+import About from "./About";
+import Login from "./Login";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <Body />
-        <Footer />
-      </div>
+      <Router>
+        <Route exact path="/" component={Konten}></Route>
+        <Route path="/about" component={About}></Route>
+        <Route path="/login" component={Login}></Route>
+      </Router>
     );
   }
 }
