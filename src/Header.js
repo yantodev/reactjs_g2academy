@@ -10,6 +10,7 @@ class Header extends Component {
         <span className="website-menu">
           <a href="/">Home</a>
           <a href="/about">About</a>
+          <a href="/latihan">Latihan</a>
           <a href="/login">Login</a>
         </span>
       </div>

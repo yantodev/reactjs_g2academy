@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Konten from "./Konten";
 import About from "./About";
+import Latihan from "./Latihan";
 import Login from "./Login";
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
       <Router>
         <Route exact path="/" component={Konten}></Route>
         <Route path="/about" component={About}></Route>
+        <Route path="/latihan" component={Latihan}></Route>
         <Route path="/login" component={Login}></Route>
       </Router>
     );

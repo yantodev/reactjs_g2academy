@@ -8,10 +8,16 @@ class About extends Component {
   //   this.state = {};
   // }
   render() {
+    let style = {
+      textAlign: "center",
+      fontWeight: "bolder",
+    };
     return (
       <>
         <Header />
-        <h1>Ini Halaman About</h1>
+        <div className="container">
+          <h1 style={style}>Ini Halaman About</h1>
+        </div>
         <Footer />
       </>
     );
