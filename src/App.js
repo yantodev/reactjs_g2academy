@@ -7,6 +7,7 @@ import Konten from "./Konten";
 import About from "./About";
 import Latihan from "./Latihan";
 import Login from "./Login";
+import Latihan2 from "./crud/App";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         <Route exact path="/" component={Konten}></Route>
         <Route path="/about" component={About}></Route>
         <Route path="/latihan" component={Latihan}></Route>
+        <Route path="/latihan2" component={Latihan2}></Route>
         <Route path="/login" component={Login}></Route>
       </Router>
     );
