@@ -5,9 +5,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Konten from "./Konten";
 import About from "./About";
-import Latihan from "./Latihan";
+import Latihan from "./crud/Latihan";
+import Latihan2 from "./crud/Latihan2";
 import Login from "./Login";
-import Latihan2 from "./crud/App";
 
 class App extends Component {
   render() {

@@ -3,7 +3,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import "../App.css";
 
-class App extends Component {
+class Latihan2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -120,4 +120,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Latihan2;

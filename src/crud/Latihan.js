@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 // import logo from "./logo.svg";
-import Header from "./Header";
-import Footer from "./Footer";
-import "./App.css";
+import Header from "../Header";
+import Footer from "../Footer";
+import "../App.css";
 // import { stat } from "fs";
 
 class Table extends Component {
