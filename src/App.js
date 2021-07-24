@@ -1,26 +1,36 @@
-/* eslint-disable no-unused-vars */
 import React, { Component } from "react";
-// import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Nav, Body } from "./template";
 import "./App.css";
-import Konten from "./Konten";
-import About from "./About";
-import Latihan from "./crud/Latihan";
-import Latihan2 from "./crud/Latihan2";
-import Login from "./Login";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentPage: "registrasi",
+    };
+  }
+  changePage = (page) => {
+    this.setState({
+      currentPage: page,
+    });
+  };
+
   render() {
     return (
-      <Router>
-        <Route exact path="/" component={Konten}></Route>
-        <Route path="/about" component={About}></Route>
-        <Route path="/latihan" component={Latihan}></Route>
-        <Route path="/latihan2" component={Latihan2}></Route>
-        <Route path="/login" component={Login}></Route>
-      </Router>
+      <>
+        <Nav page={this.state.currentPage} goToPage={this.changePage} />
+        <Body page={this.state.currentPage} />
+      </>
     );
   }
 }
 
 export default App;
+
+/**
+ * Latihan:
+ *        - Buat pagination untuk login, register dan list user
+ *        - Setiap user yang register, masuk ke daftar list user
+ *        - Setiap user yang login, ngecek data ke list user
+ *        - Terapkan atomic design
+ */
