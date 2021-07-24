@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import ListUser from "../../component/user/ListUsers";
 // import FilterUsers from "../../component/user/FilterUsers";
 
-class Home extends Component {
+class UserList extends Component {
   render() {
     return (
       <>
-        <div className="contaner">
-          <h1>Halaman Utama</h1>
-        </div>
+        {/* <FilterUsers /> */}
+        <h1>Ini User List</h1>
+        <ListUser />
       </>
     );
   }
 }
 
-export default Home;
+export default UserList;

@@ -2,15 +2,17 @@
 import React, { useState } from "react";
 import { Table, Button } from "react-bootstrap";
 
-import { useRecoilValue, useResetRecoilState } from "recoil";
-import { filterUsers, filterUsersValue, users } from ".";
+import { useRecoilValue } from "recoil";
+import { filterUsers } from ".";
+// import { useRecoilValue, useResetRecoilState } from "recoil";
+// import { filterUsers, filterUsersValue, users } from ".";
 // import EditModal from "./modals/EditModal";
 // import DeleteModal from "./modals/DeleteModal";
 
 const ListUsers = () => {
-  const productsState = useRecoilValue(filterUsers);
-  const resetList = useResetRecoilState(users);
-  const resetfilterUsersValue = useResetRecoilState(filterUsersValue);
+  const usersState = useRecoilValue(filterUsers);
+  // const resetList = useResetRecoilState(users);
+  // const resetfilterUsersValue = useResetRecoilState(filterUsersValue);
 
   // Modals
   // const [showEdit, setShowEdit] = useState(false);
@@ -26,10 +28,10 @@ const ListUsers = () => {
   // const handleDeleteClose = () => setShowDelete(false);
   const handleDeleteShow = () => setShowDelete(true);
 
-  const resetAtoms = () => {
-    resetList();
-    resetfilterUsersValue();
-  };
+  // const resetAtoms = () => {
+  //   resetList();
+  //   resetfilterUsersValue();
+  // };
 
   const editProduct = (id) => {
     handleEditShow();
@@ -50,6 +52,7 @@ const ListUsers = () => {
       <Table striped bordered hover responsive>
         <thead>
           <tr>
+            <th>No</th>
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Username</th>
@@ -58,30 +61,31 @@ const ListUsers = () => {
           </tr>
         </thead>
         <tbody>
-          {!productsState.length ? (
+          {!usersState.length ? (
             <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
-                Please login first to access this tab...
+              <td colSpan="6" style={{ textAlign: "center" }}>
+                user not found...
               </td>
             </tr>
           ) : (
-            productsState.map((item, index) => (
-              <tr key={item.id}>
-                <td>{item.firstname}</td>
-                <td>{item.lastname}</td>
-                <td>{item.username}</td>
-                <td>{item.email}</td>
+            usersState.map((data, index) => (
+              <tr key={data.id}>
+                <td>{index + 1}</td>
+                <td>{data.firstname}</td>
+                <td>{data.lastname}</td>
+                <td>{data.username}</td>
+                <td>{data.email}</td>
                 <td colSpan="2">
                   <Button
                     variant="secondary"
-                    onClick={() => editProduct(item.id)}
+                    onClick={() => editProduct(data.id)}
                   >
                     Edit
                   </Button>{" "}
                   {" | "}
                   <Button
                     variant="danger"
-                    onClick={() => deleteProduct(item.id)}
+                    onClick={() => deleteProduct(data.id)}
                   >
                     Delete
                   </Button>
@@ -92,9 +96,9 @@ const ListUsers = () => {
         </tbody>
       </Table>
 
-      <Button variant="secondary" size="lg" onClick={() => resetAtoms()}>
+      {/* <Button variant="secondary" size="lg" onClick={() => resetAtoms()}>
         Clear Data
-      </Button>
+      </Button> */}
 
       {/* <EditModal
         show={showEdit}

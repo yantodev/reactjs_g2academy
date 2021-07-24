@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { useSetRecoilState } from "recoil";
 import { v4 as uuid4 } from "uuid";
 import { users } from "../../component/user";
+import swal from "sweetalert";
 
 const Register = () => {
   const [firstname, setFirstname] = useState("");
@@ -34,11 +35,11 @@ const Register = () => {
   };
 
   const addUser = () => {
-    if (firstname === "") return alert("firstname blank");
-    if (lastname === "") return alert("lastname blank");
-    if (username === "") return alert("username blank");
-    if (email === "") return alert("email blank");
-    if (password === "") return alert("password blank");
+    if (firstname === "") return swal("Opss!", "Firstname is required");
+    if (lastname === "") return swal("Opss!", "Lastname is required");
+    if (username === "") return swal("Opss!", "Usernmae is required");
+    if (email === "") return swal("Opss!", "Email is required");
+    if (password === "") return swal("Opss!", "Password is required");
     setUser((oldList) => [
       ...oldList,
       {
@@ -50,7 +51,7 @@ const Register = () => {
         password: password,
       },
     ]);
-    alert("Registrasi sukses!!!");
+    swal("Yeahh!", "Registration is success!!");
     resetForm();
   };
 

@@ -38,6 +38,12 @@ class Nav extends Component {
         >
           Login
         </Menu>
+        <Menu
+          isActivePage={this.checkActivePage("user")}
+          redirect={() => goToPage("user")}
+        >
+          UserList
+        </Menu>
       </div>
     );
   }

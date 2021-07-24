@@ -7,6 +7,7 @@ class App extends Component {
     super(props);
     this.state = {
       currentPage: "registrasi",
+      session: "1",
     };
   }
   changePage = (page) => {
@@ -14,23 +15,20 @@ class App extends Component {
       currentPage: page,
     });
   };
+  changeSession = (session) => {
+    this.setState({
+      session: session,
+    });
+  };
 
   render() {
     return (
       <>
         <Nav page={this.state.currentPage} goToPage={this.changePage} />
-        <Body page={this.state.currentPage} />
+        <Body page={this.state.currentPage} session={this.state.session} />
       </>
     );
   }
 }
 
 export default App;
-
-/**
- * Latihan:
- *        - Buat pagination untuk login, register dan list user
- *        - Setiap user yang register, masuk ke daftar list user
- *        - Setiap user yang login, ngecek data ke list user
- *        - Terapkan atomic design
- */

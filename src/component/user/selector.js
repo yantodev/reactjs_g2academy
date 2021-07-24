@@ -9,7 +9,7 @@ export const filterUsers = selector({
 
     if (filterUsersValueState.length) {
       return usersState.filter(
-        (item) => item.name.includes(filterUsersValueState.trim()) && item
+        (item) => item.lastname.includes(filterUsersValueState.trim()) && item
       );
     }
     return users;
