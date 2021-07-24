@@ -14,9 +14,9 @@ class Table extends Component {
     this.state = {
       properti: [
         {
-          nama: ["Eko Cahyanto", "Yanto"],
-          alamat: "Jogja",
-          hobi: "Berantem",
+          nama: "Eko Cahyanto",
+          alamat: "Jogjakarta",
+          hobi: "Martial Arts",
           disabled: true,
           editOn: "none",
           toggleEditData: { action: 1, button: "btn-info", text: "Edit" },
@@ -136,64 +136,61 @@ class Table extends Component {
                   </tr>
                 );
               })}
+
+              <tr id={"formTambah"} style={{ display: this.state.isShow }}>
+                <td></td>
+                <div style={{ display: this.state.isShow }}>
+                  {/* <h3 style={{ textAlign: "center" }}>Tambah Data</h3> */}
+                  <form onSubmit={this.cekSubmit}>
+                    <td>
+                      <input
+                        onChange={this.changeNama}
+                        value={this.state.nama}
+                        id="nama"
+                        name="nama"
+                        type="text"
+                        className="form-control"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        onChange={this.changeAlamat}
+                        id="alamat"
+                        name="alamat"
+                        type="text"
+                        className="form-control"
+                        defaultValue={this.state.alamat}
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        onChange={this.changeHobi}
+                        id="hobi"
+                        name="hobi"
+                        type="text"
+                        className="form-control"
+                        defaultValue={this.state.hobi}
+                      />
+                    </td>
+
+                    <td>
+                      <button
+                        className="btn form-control btn-success"
+                        type="submit"
+                      >
+                        Save
+                      </button>
+                    </td>
+                  </form>
+                </div>
+              </tr>
             </tbody>
           </table>
-
-          <div
-            className="col-md-12"
-            id={"formTambah"}
-            style={{ display: this.state.isShow }}
-          >
-            <div style={{ display: this.state.isShow }}>
-              <h3 style={{ textAlign: "center" }}>Tambah Data</h3>
-              <form onSubmit={this.cekSubmit}>
-                <div className="form-group col-md-3">
-                  <label htmlFor="nama">Nama</label>
-                  <input
-                    onChange={this.changeNama}
-                    value={this.state.nama}
-                    id="nama"
-                    name="nama"
-                    type="text"
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group col-md-3">
-                  <label htmlFor="alamat">Alamat</label>
-                  <input
-                    onChange={this.changeAlamat}
-                    id="alamat"
-                    name="alamat"
-                    type="text"
-                    className="form-control"
-                    defaultValue={this.state.alamat}
-                  />
-                </div>
-
-                <div className="form-group col-md-3">
-                  <label htmlFor="hobi">Hobi</label>
-                  <input
-                    onChange={this.changeHobi}
-                    id="hobi"
-                    name="hobi"
-                    type="text"
-                    className="form-control"
-                    defaultValue={this.state.hobi}
-                  />
-                </div>
-
-                <div className="form-group col-md-3">
-                  <label>&nbsp;</label>
-                  <button
-                    className="btn form-control btn-success"
-                    type="submit"
-                  >
-                    Tambah
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
+          <table
+            style={{ backgroundColor: "white" }}
+            className="tbl-siswa table table-hovered table-striped table-bordered"
+          ></table>
         </div>
         <Footer />
       </div>

@@ -3,7 +3,7 @@ import Header from "./Header";
 import axios from "axios";
 import { Badge, Table } from "react-bootstrap";
 import Footer from "./Footer";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 class Konten extends Component {
@@ -15,7 +15,7 @@ class Konten extends Component {
   }
   getData() {
     axios
-      .get("https://jsonplaceholder.typicode.com/users?_start=0&_limit=5")
+      .get("https://jsonplaceholder.typicode.com/users?_start=0&_limit=10")
       .then((res) => {
         var data = res.data;
         this.setState({ data: data });
@@ -62,13 +62,14 @@ class Konten extends Component {
               ))}
             </tbody>
           </Table>
-        </div>
-        <div className="pagination">
-          <span>Prev</span>
-          <span>1</span>
-          <span className="active">2</span>
-          <span>3</span>
-          <span>Next</span>
+
+          <div className="pagination">
+            <span>Prev</span>
+            <span>1</span>
+            <span className="active">2</span>
+            <span>3</span>
+            <span>Next</span>
+          </div>
         </div>
         <Footer />
       </div>
