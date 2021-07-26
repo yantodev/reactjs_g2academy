@@ -4,11 +4,17 @@ import ListUser from "../../component/user/ListUsers";
 
 class UserList extends Component {
   render() {
+    let h1 = {
+      textAlign: "center",
+      fontWeight: "bolder",
+    };
     return (
       <>
-        {/* <FilterUsers /> */}
-        <h1>Ini User List</h1>
-        <ListUser />
+        <div className="container">
+          {/* <FilterUsers /> */}
+          <h1 style={h1}>Daftar User</h1>
+          <ListUser />
+        </div>
       </>
     );
   }

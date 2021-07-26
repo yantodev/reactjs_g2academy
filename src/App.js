@@ -6,8 +6,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: "registrasi",
-      session: "1",
+      currentPage: "home",
+      session: true,
     };
   }
   changePage = (page) => {
@@ -25,7 +25,11 @@ class App extends Component {
     return (
       <>
         <Nav page={this.state.currentPage} goToPage={this.changePage} />
-        <Body page={this.state.currentPage} session={this.state.session} />
+        <Body
+          page={this.state.currentPage}
+          session={this.state.session}
+          goToPage={this.changePage}
+        />
       </>
     );
   }

@@ -5,31 +5,59 @@ import swal from "sweetalert";
 class Body extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      usersList: [
+        {
+          id: 1,
+          username: "eko",
+          email: "eko@mail.com",
+          password: "1234",
+        },
+      ],
+      cekSession: false,
+    };
   }
+
+  addNewUserHandler = (username, email, password) => {
+    let userCopy = JSON.parse(JSON.stringify(this.state.usersList));
+    let userInputNew = {
+      id: userCopy[userCopy.length - 1].id + 1,
+      username: username,
+      email: email,
+      password: password,
+    };
+    userCopy.push(userInputNew);
+
+    this.setState({ usersList: userCopy });
+
+    console.log("call add new in MAIN LIST:", userInputNew);
+  };
 
   onAddHandler = () => {};
   renderList = () => {};
 
   renderPage = () => {
-    let data = "2";
     const page = this.props.page;
     const session = this.props.session;
+    const cekSession = this.state.cekSession;
     console.log("page : ", page);
     console.log("session : ", session);
-    if (page === "registrasi") return <Register />;
+    console.log("cek session : ", cekSession);
 
-    if (page === "login") return <Login />;
+    if (page === "registrasi")
+      return <Register handleSubmit={this.addNewUserHandler} />;
 
-    if (page === "user" && session !== data) {
+    if (page === "login") return <Login dataUser={this.state.usersList} />;
+
+    if (page === "user" && session !== cekSession) {
       swal("Opss!", "Please, login first!!!");
-      return <Login />;
-    } else if (page === "user" && session === data) {
+      return <Login dataUser={this.state.usersList} />;
+    } else if (page === "user" && session === cekSession) {
       return <UsersList />;
     }
     // if (page === "user" && session === data)
 
-    return <Home />;
+    return <Home dataUser={this.state.usersList} />;
   };
 
   render() {

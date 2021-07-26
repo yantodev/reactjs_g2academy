@@ -1,7 +1,7 @@
 // import React from "react";
 import React, { useState } from "react";
 import { Table, Button } from "react-bootstrap";
-
+import { Thead, Tr, Th } from "../tabel";
 import { useRecoilValue } from "recoil";
 import { filterUsers } from ".";
 // import { useRecoilValue, useResetRecoilState } from "recoil";
@@ -23,6 +23,7 @@ const ListUsers = () => {
   const [setUserId4Actions] = useState(0);
 
   // const handleEditClose = () => setShowEdit(false);
+
   const handleEditShow = () => setShowEdit(true);
 
   // const handleDeleteClose = () => setShowDelete(false);
@@ -32,7 +33,6 @@ const ListUsers = () => {
   //   resetList();
   //   resetfilterUsersValue();
   // };
-
   const editProduct = (id) => {
     handleEditShow();
     setUserId4Actions(id);
@@ -42,24 +42,28 @@ const ListUsers = () => {
     handleDeleteShow();
     setUserId4Actions(id);
   };
-  let h1 = {
-    textAlign: "center",
-    fontWeight: "bolder",
+
+  let email1 = 1;
+  let email2 = 2;
+  const onLoad = () => {
+    if (email1 !== email2) {
+      return `hidden = "hidden"`;
+    }
   };
+
   return (
     <>
-      <h1 style={h1}>Daftar User</h1>
-      <Table striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+      <Table striped bordered hover variant="dark">
+        <Thead>
+          <Tr>
+            <Th>No</Th>
+            <Th>Firstname</Th>
+            <Th>Lastname</Th>
+            <Th>Username</Th>
+            <Th>Email</Th>
+            <Th>Actions</Th>
+          </Tr>
+        </Thead>
         <tbody>
           {!usersState.length ? (
             <tr>
@@ -77,6 +81,7 @@ const ListUsers = () => {
                 <td>{data.email}</td>
                 <td colSpan="2">
                   <Button
+                    onLoad={onLoad()}
                     variant="secondary"
                     onClick={() => editProduct(data.id)}
                   >

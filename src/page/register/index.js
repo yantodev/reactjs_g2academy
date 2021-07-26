@@ -1,139 +1,100 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useSetRecoilState } from "recoil";
-import { v4 as uuid4 } from "uuid";
-import { users } from "../../component/user";
 import swal from "sweetalert";
 
-const Register = () => {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const [repeatpassword, setRepeatPassword] = useState("");
-  const setUser = useSetRecoilState(users);
+class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      email: "",
+      password: "",
+    };
+  }
 
-  const onChangeFirstname = (e) => {
-    setFirstname(e.target.value);
+  handleChange = (event) => {
+    const { name, value } = event.target;
+
+    this.setState({
+      [name]: value,
+    });
   };
 
-  const onChangeLastname = (e) => {
-    setLastname(e.target.value);
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    const { username, email, password } = this.state;
+
+    if (username === "" || password === "" || email === "") {
+      swal("Opss!", "fields must not be empty");
+    } else if (email.indexOf(" ") !== -1 || password.indexOf(" ") !== -1) {
+      swal("Opss!", "fields mus not contain spaces");
+    } else {
+      this.props.handleSubmit(username, email, password);
+      this.setState({
+        username: "",
+        email: "",
+        password: "",
+      });
+      swal("Yeahh!", "User is registered!!");
+    }
+    console.log("test", this.state.email);
   };
 
-  const onChangeUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  render() {
+    const { username, email, password } = this.state;
+    return (
+      <>
+        <div className="container">
+          <h1>Register</h1>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group className="col-lg-6">
+              <Form.Group className="mb-3">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
 
-  const onChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
+              <Form.Group className="mb-3">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  name="email"
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
 
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
+              <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
 
-  const addUser = () => {
-    if (firstname === "") return swal("Opss!", "Firstname is required");
-    if (lastname === "") return swal("Opss!", "Lastname is required");
-    if (username === "") return swal("Opss!", "Usernmae is required");
-    if (email === "") return swal("Opss!", "Email is required");
-    if (password === "") return swal("Opss!", "Password is required");
-    setUser((oldList) => [
-      ...oldList,
-      {
-        id: uuid4(),
-        firstname: firstname,
-        lastname: lastname,
-        username: username,
-        email: email,
-        password: password,
-      },
-    ]);
-    swal("Yeahh!", "Registration is success!!");
-    resetForm();
-  };
-
-  const resetForm = () => {
-    setFirstname("");
-    setLastname("");
-    setUsername("");
-    setEmail("");
-    setPassword("");
-  };
-  return (
-    <>
-      <div className="container">
-        <h1>Register</h1>
-        <Form>
-          <Form.Group className="col-lg-6">
-            <Form.Group className="mb-3">
-              <Form.Label>Firstname</Form.Label>
-              <Form.Control
-                type="text"
-                value={firstname}
-                placeholder="username"
-                onChange={(e) => onChangeFirstname(e)}
-              />
+              {/* <Form.Group className="mb-3">
+                <Form.Label>Repeat Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+              </Form.Group> */}
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
             </Form.Group>
+          </Form>
+        </div>
+      </>
+    );
+  }
+}
 
-            <Form.Group className="mb-3">
-              <Form.Label>Lastname</Form.Label>
-              <Form.Control
-                type="text"
-                value={lastname}
-                placeholder="username"
-                onChange={(e) => onChangeLastname(e)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="text"
-                value={username}
-                placeholder="username"
-                onChange={(e) => onChangeUsername(e)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                value={email}
-                placeholder="Enter email"
-                onChange={(e) => onChangeEmail(e)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                placeholder="Password"
-                onChange={(e) => onChangePassword(e)}
-              />
-            </Form.Group>
-
-            {/* <Form.Group className="mb-3">
-              <Form.Label>Repeat Password</Form.Label>
-              <Form.Control
-                type="password"
-                value={repeatpassword}
-                placeholder="Password"
-              />
-            </Form.Group> */}
-            <Button variant="primary" onClick={() => addUser()}>
-              Submit
-            </Button>
-          </Form.Group>
-        </Form>
-      </div>
-    </>
-  );
-};
-
-export default Register;
+export default Signup;
