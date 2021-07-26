@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Table, Button } from "react-bootstrap";
-import { Thead } from "../../component/tabel";
+import { Thead, Tr, Th, Tbody, Td } from "../../component/tabel";
 
 class Home extends Component {
   constructor(props) {
@@ -26,29 +26,37 @@ class Home extends Component {
             <li>Halaman ini rencananya akan dibuat dengan atomic desaign</li>
           </ul>
           <Table striped bordered hover variant="dark">
-            <Thead />
-            <tbody>
+            <Thead>
+              <Tr>
+                <Th>No</Th>
+                <Th>Username</Th>
+                <Th>Email</Th>
+                <Th>Password</Th>
+                <Th>Actions</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
               {!dataUser.length ? (
-                <tr>
-                  <td colSpan="6" style={{ textAlign: "center" }}>
+                <Tr>
+                  <Td colSpan="6" style={{ textAlign: "center" }}>
                     user not found...
-                  </td>
-                </tr>
+                  </Td>
+                </Tr>
               ) : (
                 dataUser.map((data, index) => (
-                  <tr key={data.id}>
-                    <td>{index + 1}</td>
-                    <td>{data.username}</td>
-                    <td>{data.email}</td>
-                    <td>{data.password}</td>
-                    <td colSpan="2">
+                  <Tr key={data.id}>
+                    <Td>{index + 1}</Td>
+                    <Td>{data.username}</Td>
+                    <Td>{data.email}</Td>
+                    <Td>{data.password}</Td>
+                    <Td colSpan="2">
                       <Button variant="secondary">Edit</Button> {" | "}
                       <Button variant="danger">Delete</Button>
-                    </td>
-                  </tr>
+                    </Td>
+                  </Tr>
                 ))
               )}
-            </tbody>
+            </Tbody>
           </Table>
         </div>
       </>

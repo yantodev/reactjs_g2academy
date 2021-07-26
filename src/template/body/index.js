@@ -14,7 +14,7 @@ class Body extends Component {
           password: "1234",
         },
       ],
-      cekSession: false,
+      cekSession: true,
     };
   }
 
@@ -53,7 +53,7 @@ class Body extends Component {
       swal("Opss!", "Please, login first!!!");
       return <Login dataUser={this.state.usersList} />;
     } else if (page === "user" && session === cekSession) {
-      return <UsersList />;
+      return <UsersList dataUser={this.state.usersList} />;
     }
     // if (page === "user" && session === data)
 

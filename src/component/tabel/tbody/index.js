@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-class Thead extends Component {
+class Tbody extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -8,10 +8,10 @@ class Thead extends Component {
     const { children } = this.props;
     return (
       <>
-        <thead>{children}</thead>
+        <tbody>{children}</tbody>
       </>
     );
   }
 }
 
-export default Thead;
+export default Tbody;

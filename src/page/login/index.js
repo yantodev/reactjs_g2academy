@@ -38,7 +38,7 @@ class Login extends Component {
         password: "",
       });
     }
-    return swal("Opss!", "email/password dont match!!!");
+    return swal("Opss!", "email/password don't match!!!");
   };
   render() {
     const { email, password } = this.state;
@@ -72,7 +72,7 @@ class Login extends Component {
                   />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                  Submit
+                  LOGIN
                 </Button>
               </Form.Group>
             </Form>

@@ -5,7 +5,12 @@ class Th extends Component {
     this.state = {};
   }
   render() {
-    return <th></th>;
+    const { children } = this.props;
+    return (
+      <>
+        <tr>{children}</tr>
+      </>
+    );
   }
 }
 
