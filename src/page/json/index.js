@@ -16,35 +16,7 @@ class JsonPlaceholder extends Component {
       ],
     };
   }
-  handleEdit = (e) => {
-    console.log(e);
-    console.log("LOGGED-IN-TABLE", this.state.loggedUser);
 
-    // let isEditCopy = {
-    //   no: parseInt(e.target.className) - 1,
-    //   status: true,
-    // };
-
-    // let updateData = {
-    //   //default DATA
-    //   row: e.target.className,
-    //   name: this.state.loggedUser.name,
-    //   username: this.state.loggedUser.username,
-    //   password: this.state.loggedUser.password,
-    // };
-
-    // this.setState({
-    //   isEdit: isEditCopy,
-    //   data: updateData,
-    // });
-
-    // this.props.onGoToEditForm(updateData);
-    // console.log("Row-i:",e.target.parentElement.parentElement)
-  };
-  // delete = (id) => {
-  //   const dataJson = this.props;
-  //   console.log(id);
-  // };
   render() {
     let h1 = {
       textAlign: "center",
@@ -65,6 +37,7 @@ class JsonPlaceholder extends Component {
                 <Thead>
                   <Tr>
                     <Th>No</Th>
+                    <Th>ID</Th>
                     <Th>Name</Th>
                     <Th>Username</Th>
                     <Th>Email</Th>
@@ -77,21 +50,25 @@ class JsonPlaceholder extends Component {
                   {dataJson.map((data, index) => (
                     <Tr key={data.id}>
                       <Td>{index + 1}</Td>
+                      <Td>{data.id}</Td>
                       <Td>{data.name}</Td>
                       <Td>{data.username}</Td>
                       <Td>{data.email}</Td>
-                      <Td>{data.password}</Td>
+                      <Td>********</Td>
                       <Td>{data.address}</Td>
                       <Td colSpan="2">
                         {datas === data.email ? (
                           <Button
                             variant="secondary"
-                            onClick={this.handleEdit(data.id)}
+                            onClick={() => this.props.editUser(data.id)}
                           >
                             Edit
                           </Button>
                         ) : (
-                          <Button variant="danger" onClick={this.delete}>
+                          <Button
+                            variant="danger"
+                            onClick={() => this.props.deleteUser(data.id)}
+                          >
                             Delete
                           </Button>
                         )}

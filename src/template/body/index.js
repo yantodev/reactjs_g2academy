@@ -7,14 +7,7 @@ class Body extends Component {
     super(props);
     this.state = {
       usersList: [],
-      // usersList: [
-      //   {
-      //     id: 1,
-      //     username: "eko",
-      //     email: "eko@mail.com",
-      //     password: "1234",
-      //   },
-      // ],
+      statusEdit: false,
     };
   }
 
@@ -78,10 +71,54 @@ class Body extends Component {
         <Jsonplaceholder
           datas={this.props.datas}
           dataJson={this.state.usersList}
+          editUser={this.editData}
+          deleteUser={this.deleteUser}
         />
       );
 
-    return <Home dataUser={this.state.usersList} />;
+    return (
+      <Home
+        dataUser={this.state.usersList}
+        editUser={this.editData}
+        deleteUser={this.deleteUser}
+      />
+    );
+  };
+
+  editData = (id) => {
+    const editValue = this.state.usersList
+      .filter((user) => user.id === id)
+      .map((filterData) => {
+        return filterData;
+      });
+
+    this.setState({
+      name: editValue[0].name,
+      username: editValue[0].username,
+      email: editValue[0].email,
+      id: editValue[0].id,
+    });
+    this.props.goToPage("registrasi");
+    console.log("cek data id: ", id);
+  };
+
+  deleteUser = (id) => {
+    console.log("cek body:", id);
+    const newUser = this.state.usersList
+      .filter((user) => user.id !== id)
+      .map((filterUser) => {
+        return filterUser;
+      });
+
+    this.setState({
+      usersList: newUser,
+    });
+  };
+
+  statusEdit = () => {
+    this.setState({
+      statusEdit: true,
+    });
   };
 
   render() {

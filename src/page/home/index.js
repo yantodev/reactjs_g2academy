@@ -9,7 +9,6 @@ class Home extends Component {
     this.state = {
       email: "",
       password: "",
-      hidden: "hidden",
     };
   }
 
@@ -29,6 +28,7 @@ class Home extends Component {
             <Thead>
               <Tr>
                 <Th>No</Th>
+                <Th>ID User</Th>
                 <Th>Name</Th>
                 <Th>Username</Th>
                 <Th>Email</Th>
@@ -41,15 +41,26 @@ class Home extends Component {
               {dataUser.map((data, index) => (
                 <Tr key={data.id}>
                   <Td>{index + 1}</Td>
+                  <Td>{data.id}</Td>
                   <Td>{data.name}</Td>
                   <Td>{data.username}</Td>
                   <Td>{data.email}</Td>
-                  <Td>{data.password}</Td>
+                  <Td>***********</Td>
                   <Td>{data.address}</Td>
                   <Td colSpan="2">
-                    <Button variant="secondary">Edit</Button>
+                    <Button
+                      variant="secondary"
+                      onClick={() => this.props.editUser(data.id)}
+                    >
+                      Edit
+                    </Button>
                     {" | "}
-                    <Button variant="danger">Delete</Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => this.props.deleteUser(data.id)}
+                    >
+                      Delete
+                    </Button>
                   </Td>
                 </Tr>
               ))}
