@@ -39,6 +39,7 @@ class Nav extends Component {
         <Menu
           isActivePage={this.checkActivePage("registrasi")}
           redirect={() => goToPage("registrasi")}
+          doLogin={this.state.loginStatus}
         >
           Register
         </Menu>

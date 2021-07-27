@@ -39,6 +39,7 @@ class App extends Component {
           goToPage={this.changePage}
           doLogin={this.changeStatusLogin}
           datas={this.state.email}
+          loggedIn={this.state.loginStatus}
         />
       </>
     );

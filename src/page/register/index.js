@@ -51,8 +51,9 @@ class Signup extends Component {
 
   render() {
     const { name, username, email, password, address } = this.state;
-    const login = this.props;
-    if (login) {
+    const { loggedIn, datas } = this.props;
+    console.log("cek login :", datas);
+    if (!loggedIn) {
       return (
         <div className="container">
           <h1>Register</h1>
@@ -122,7 +123,7 @@ class Signup extends Component {
     } else {
       return (
         <div className="container">
-          <h1>Login</h1>
+          <h1>Edit Data</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group className="col-lg-6">
               <Form.Group className="mb-3">

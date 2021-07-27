@@ -8,6 +8,7 @@ class Body extends Component {
     this.state = {
       usersList: [],
       statusEdit: false,
+      index: 0,
     };
   }
 
@@ -92,12 +93,14 @@ class Body extends Component {
         return filterData;
       });
 
+    console.log(`cek userlist`, editValue);
     this.setState({
       name: editValue[0].name,
       username: editValue[0].username,
       email: editValue[0].email,
       id: editValue[0].id,
     });
+    console.log(`cek editan : `, editValue[0].name);
     this.props.goToPage("registrasi");
     console.log("cek data id: ", id);
   };
@@ -115,9 +118,10 @@ class Body extends Component {
     });
   };
 
-  statusEdit = () => {
+  statusEdit = (id) => {
     this.setState({
       statusEdit: true,
+      index: id,
     });
   };
 
