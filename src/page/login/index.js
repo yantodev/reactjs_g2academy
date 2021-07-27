@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 class Login extends Component {
   constructor(props) {
@@ -22,23 +22,21 @@ class Login extends Component {
     event.preventDefault();
 
     const { email, password } = this.state;
-    const { dataUser } = this.props;
+    const { dataJson } = this.props;
     console.log(`email : `, email);
     console.log(`password : `, password);
-    console.log(`database :`, dataUser);
-    for (let i = 0; i < dataUser.length; i++) {
-      console.log("call user in login", dataUser[i]["email"]);
+    console.log(`database :`, dataJson);
+    for (let i = 0; i < dataJson.length; i++) {
+      console.log("user in login", dataJson[i]["email"]);
       if (
-        email === dataUser[i]["email"] &&
-        password === dataUser[i]["password"]
-      )
-        return swal("Yeahhh!!", "login is success!!!");
-      this.setState({
-        email: "",
-        password: "",
-      });
+        email === dataJson[i]["email"] &&
+        password === dataJson[i]["password"]
+      ) {
+        this.props.setLogin(true, email);
+        return Swal.fire("Yeahh...", "Login is success!", "success");
+      }
     }
-    return swal("Opss!", "email/password don't match!!!");
+    return Swal.fire("Oops...", "Email/Password is wrong!", "error");
   };
   render() {
     const { email, password } = this.state;

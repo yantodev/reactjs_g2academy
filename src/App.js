@@ -7,7 +7,8 @@ class App extends Component {
     super(props);
     this.state = {
       currentPage: "home",
-      session: true,
+      loginStatus: false,
+      email: "",
     };
   }
   changePage = (page) => {
@@ -15,20 +16,29 @@ class App extends Component {
       currentPage: page,
     });
   };
-  changeSession = (session) => {
+  changeStatusLogin = (status, email) => {
     this.setState({
-      session: session,
+      loginStatus: status,
+      email: email,
+      currentPage: "json",
     });
   };
 
   render() {
     return (
       <>
-        <Nav page={this.state.currentPage} goToPage={this.changePage} />
+        <Nav
+          doLogin={this.changeStatusLogin}
+          login={this.state.loginStatus}
+          page={this.state.currentPage}
+          goToPage={this.changePage}
+        />
         <Body
           page={this.state.currentPage}
-          session={this.state.session}
+          login={this.state.session}
           goToPage={this.changePage}
+          doLogin={this.changeStatusLogin}
+          datas={this.state.email}
         />
       </>
     );

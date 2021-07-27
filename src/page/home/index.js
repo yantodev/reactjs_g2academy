@@ -9,6 +9,7 @@ class Home extends Component {
     this.state = {
       email: "",
       password: "",
+      hidden: "hidden",
     };
   }
 
@@ -22,40 +23,36 @@ class Home extends Component {
       <>
         <div className="container">
           <h1 style={h1}>Halaman Utama</h1>
-          <ul>
-            <li>Halaman ini rencananya akan dibuat dengan atomic desaign</li>
-          </ul>
+          <h1 style={h1}>Untuk Tester Data</h1>
+
           <Table striped bordered hover variant="dark">
             <Thead>
               <Tr>
                 <Th>No</Th>
+                <Th>Name</Th>
                 <Th>Username</Th>
                 <Th>Email</Th>
                 <Th>Password</Th>
+                <Th>Address</Th>
                 <Th>Actions</Th>
               </Tr>
             </Thead>
             <Tbody>
-              {!dataUser.length ? (
-                <Tr>
-                  <Td colSpan="6" style={{ textAlign: "center" }}>
-                    user not found...
+              {dataUser.map((data, index) => (
+                <Tr key={data.id}>
+                  <Td>{index + 1}</Td>
+                  <Td>{data.name}</Td>
+                  <Td>{data.username}</Td>
+                  <Td>{data.email}</Td>
+                  <Td>{data.password}</Td>
+                  <Td>{data.address}</Td>
+                  <Td colSpan="2">
+                    <Button variant="secondary">Edit</Button>
+                    {" | "}
+                    <Button variant="danger">Delete</Button>
                   </Td>
                 </Tr>
-              ) : (
-                dataUser.map((data, index) => (
-                  <Tr key={data.id}>
-                    <Td>{index + 1}</Td>
-                    <Td>{data.username}</Td>
-                    <Td>{data.email}</Td>
-                    <Td>{data.password}</Td>
-                    <Td colSpan="2">
-                      <Button variant="secondary">Edit</Button> {" | "}
-                      <Button variant="danger">Delete</Button>
-                    </Td>
-                  </Tr>
-                ))
-              )}
+              ))}
             </Tbody>
           </Table>
         </div>
