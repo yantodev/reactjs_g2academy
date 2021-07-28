@@ -29,6 +29,23 @@ class Body extends Component {
 
     console.log("call add new in MAIN LIST:", userInputNew);
   };
+
+  addEditUser = (name, username, email, password, address) => {
+    let userCopy = JSON.parse(JSON.stringify(this.state.usersList));
+    let userInputNew = {
+      id: userCopy[userCopy.length - 1].id + 1,
+      name: name,
+      username: username,
+      email: email,
+      address: address,
+      password: password,
+    };
+    userCopy.splice(userInputNew.id, 1, userInputNew);
+
+    this.setState({ usersList: userCopy });
+
+    console.log("call add new in MAIN LIST:", userInputNew);
+  };
   componentDidMount() {
     const urlFetch = fetch("https://jsonplaceholder.typicode.com/users");
     urlFetch
@@ -62,6 +79,7 @@ class Body extends Component {
         <Register
           onEdit={this.state.usersEdit}
           handleSubmit={this.addNewUserHandler}
+          handleEdit={this.addEditUser}
         />
       );
 

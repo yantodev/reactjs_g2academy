@@ -73,3 +73,20 @@ npm start
 -        - Ketika sudah login, menu register & login hilang dan muncul menu logout
 -        - Ketika edit, gunakan form pada halaman registrasi
 - \*/
+
+editStudentExist = (newUser) => {
+// newUser.preventDefault();
+console.log("data baruuuuuuuuuuuuu", newUser);
+console.log(this.state.studentList);
+
+    let copyStudent = this.state.studentList;
+    console.log("ini copy student : ", copyStudent);
+
+    copyStudent.splice(this.state.index, 1, newUser);
+    this.setState({
+      studentList: copyStudent,
+    });
+
+    localStorage.setItem("students", JSON.stringify(copyStudent));
+
+};

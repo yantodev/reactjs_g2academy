@@ -27,7 +27,7 @@ class Signup extends Component {
     event.preventDefault();
 
     const { name, username, email, address, password } = this.state;
-
+    console.log("email", email);
     if (
       name === "" ||
       username === "" ||
@@ -40,6 +40,7 @@ class Signup extends Component {
       //   swal("Opss!", "fields mus not contain spaces", "error");
     } else {
       this.props.handleSubmit(name, username, email, password, address);
+      this.props.handleEdit(name, username, email, password, address);
       this.setState({
         name: "",
         username: "",
@@ -56,6 +57,7 @@ class Signup extends Component {
     // console.log("cekkkkk:", this.state.userEdit);
     // console.log("cek name:", this.state.userEdit[0]["name"]);
     const { name, username, email, password, address } = this.state;
+    const { nameEdit } = this.state.userEdit;
     const onEdit = this.props;
 
     console.log("cek login :", onEdit);
@@ -138,7 +140,8 @@ class Signup extends Component {
                   name="name"
                   type="text"
                   placeholder="Name"
-                  value={this.state.userEdit[0]["name"]}
+                  // value=
+                  defaultValue={this.state.userEdit[0]["name"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -148,7 +151,7 @@ class Signup extends Component {
                   name="username"
                   type="text"
                   placeholder="Username"
-                  value={this.state.userEdit[0]["username"]}
+                  defaultValue={this.state.userEdit[0]["username"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -159,7 +162,7 @@ class Signup extends Component {
                   name="email"
                   type="email"
                   placeholder="Enter email"
-                  value={this.state.userEdit[0]["email"]}
+                  defaultValue={this.state.userEdit[0]["email"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -170,7 +173,7 @@ class Signup extends Component {
                   name="address"
                   type="address"
                   placeholder="Address"
-                  value={this.state.userEdit[0]["address"]}
+                  defaultValue={this.state.userEdit[0]["address"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -181,13 +184,13 @@ class Signup extends Component {
                   name="password"
                   type="password"
                   placeholder="Password"
-                  value={this.state.userEdit[0]["password"]}
+                  defaultValue={this.state.userEdit[0]["password"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>
 
               <Button variant="primary" type="submit">
-                Submit
+                Edit
               </Button>
             </Form.Group>
           </Form>
