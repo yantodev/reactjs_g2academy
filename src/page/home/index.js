@@ -11,20 +11,60 @@ class Home extends Component {
       password: "",
     };
   }
-
+  renderUsers = () => {
+    const { dataUser, loading } = this.props;
+    console.log(`cek render`, loading);
+    if (!loading)
+      return (
+        <td align="center" colSpan="8">
+          <img
+            width="150px"
+            src="https://www.combantrin.co.id/sites/combantrin_id/files/loading_2.gif"
+          ></img>
+        </td>
+      );
+    return dataUser.map((data, index) => {
+      return (
+        <Tr key={data.id}>
+          <Td>{index + 1}</Td>
+          <Td>{data.id}</Td>
+          <Td>{data.name}</Td>
+          <Td>{data.username}</Td>
+          <Td>{data.email}</Td>
+          <Td>***********</Td>
+          <Td>{data.address}</Td>
+          <Td colSpan="2">
+            <Button
+              variant="secondary"
+              onClick={() => this.props.editUser(data.id)}
+            >
+              Edit
+            </Button>
+            {" | "}
+            <Button
+              variant="danger"
+              onClick={() => this.props.deleteUser(data.id)}
+            >
+              Delete
+            </Button>
+          </Td>
+        </Tr>
+      );
+    });
+  };
   render() {
     let h1 = {
       textAlign: "center",
       fontWeight: "bolder",
     };
-    const { dataUser } = this.props;
+    // const { dataUser } = this.props;
     return (
       <>
         <div className="container">
           <h1 style={h1}>Halaman Utama</h1>
           <h1 style={h1}>Untuk Tester Data</h1>
 
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover size="sm" variant="dark">
             <Thead>
               <Tr>
                 <Th>No</Th>
@@ -37,34 +77,7 @@ class Home extends Component {
                 <Th>Actions</Th>
               </Tr>
             </Thead>
-            <Tbody>
-              {dataUser.map((data, index) => (
-                <Tr key={data.id}>
-                  <Td>{index + 1}</Td>
-                  <Td>{data.id}</Td>
-                  <Td>{data.name}</Td>
-                  <Td>{data.username}</Td>
-                  <Td>{data.email}</Td>
-                  <Td>***********</Td>
-                  <Td>{data.address}</Td>
-                  <Td colSpan="2">
-                    <Button
-                      variant="secondary"
-                      onClick={() => this.props.editUser(data.id)}
-                    >
-                      Edit
-                    </Button>
-                    {" | "}
-                    <Button
-                      variant="danger"
-                      onClick={() => this.props.deleteUser(data.id)}
-                    >
-                      Delete
-                    </Button>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
+            <Tbody>{this.renderUsers()}</Tbody>
           </Table>
         </div>
       </>

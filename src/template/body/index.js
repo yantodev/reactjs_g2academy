@@ -10,6 +10,8 @@ class Body extends Component {
       usersEdit: [],
       statusEdit: false,
       index: 0,
+      id: 0,
+      loading: false,
     };
   }
 
@@ -33,18 +35,19 @@ class Body extends Component {
   addEditUser = (name, username, email, password, address) => {
     let userCopy = JSON.parse(JSON.stringify(this.state.usersList));
     let userInputNew = {
-      id: userCopy[userCopy.length - 1].id + 1,
+      id: this.state.id,
       name: name,
       username: username,
       email: email,
       address: address,
       password: password,
     };
-    userCopy.splice(userInputNew.id, 1, userInputNew);
+    userCopy.splice(this.state.id - 1, 1, userInputNew);
+    console.log("ini id edit:", userCopy.id);
 
     this.setState({ usersList: userCopy });
 
-    console.log("call add new in MAIN LIST:", userInputNew);
+    console.log("call edit new in MAIN LIST:", userInputNew);
   };
   componentDidMount() {
     const urlFetch = fetch("https://jsonplaceholder.typicode.com/users");
@@ -63,11 +66,13 @@ class Body extends Component {
             address: user.address.city,
           };
         });
-        console.log("JSONDATA:", dataArr);
+        // console.log("JSONDATA:", dataArr);
         this.setState({
           usersList: dataArr,
         });
-      });
+      })
+      .finally(() => this.setState({ loading: true }));
+    console.log("cek loading :", this.state.loading);
   }
 
   renderPage = () => {
@@ -103,6 +108,7 @@ class Body extends Component {
 
     return (
       <Home
+        loading={this.state.loading}
         dataUser={this.state.usersList}
         editUser={this.editData}
         deleteUser={this.deleteUser}
@@ -123,12 +129,13 @@ class Body extends Component {
       name: editValue[0].name,
       username: editValue[0].username,
       email: editValue[0].email,
-      id: editValue[0].id,
+      id: id,
     });
     console.log(`cek editan : `, editValue[0].name);
     this.props.goToPage("registrasi");
     console.log("cek data id: ", id);
   };
+
   deleteUser = (id) => {
     console.log("cek body:", id);
     const newUser = this.state.usersList

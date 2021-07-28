@@ -41,6 +41,7 @@ class Signup extends Component {
     } else {
       this.props.handleSubmit(name, username, email, password, address);
       this.props.handleEdit(name, username, email, password, address);
+      console.log(`cek edit`, name);
       this.setState({
         name: "",
         username: "",
@@ -57,7 +58,7 @@ class Signup extends Component {
     // console.log("cekkkkk:", this.state.userEdit);
     // console.log("cek name:", this.state.userEdit[0]["name"]);
     const { name, username, email, password, address } = this.state;
-    const { nameEdit } = this.state.userEdit;
+    // const { nameEdit } = this.state.userEdit;
     const onEdit = this.props;
 
     console.log("cek login :", onEdit);
@@ -188,6 +189,13 @@ class Signup extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
+              {/* <Form.Control
+                name="id"
+                type="text"
+                placeholder="id"
+                defaultValue={this.state.userEdit[0]["id"]}
+                onChange={this.handleChange}
+              /> */}
 
               <Button variant="primary" type="submit">
                 Edit
