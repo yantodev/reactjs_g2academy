@@ -50,7 +50,9 @@ class Body extends Component {
     console.log("call edit new in MAIN LIST:", userInputNew);
   };
   componentDidMount() {
-    const urlFetch = fetch("https://jsonplaceholder.typicode.com/users");
+    const urlFetch = fetch(
+      "https://raw.githubusercontent.com/cahya93/JsonAPI/cahya93-patch-1/users.json"
+    );
     urlFetch
       .then((res) => {
         if (res.status === 200) return res.json();
@@ -60,10 +62,11 @@ class Body extends Component {
           return {
             id: index + 1,
             name: user.name,
-            username: user.username,
             email: user.email,
             password: "12345",
-            address: user.address.city,
+            address: user.address,
+            role: user.role,
+            gajiPokok: user.gajiPokok,
           };
         });
         // console.log("JSONDATA:", dataArr);

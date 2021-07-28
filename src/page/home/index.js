@@ -29,10 +29,11 @@ class Home extends Component {
           <Td>{index + 1}</Td>
           <Td>{data.id}</Td>
           <Td>{data.name}</Td>
-          <Td>{data.username}</Td>
           <Td>{data.email}</Td>
           <Td>***********</Td>
           <Td>{data.address}</Td>
+          <Td>Rp. {data.gajiPokok}</Td>
+          <Td>{data.role}</Td>
           <Td colSpan="2">
             <Button
               variant="secondary"
@@ -70,10 +71,11 @@ class Home extends Component {
                 <Th>No</Th>
                 <Th>ID User</Th>
                 <Th>Name</Th>
-                <Th>Username</Th>
                 <Th>Email</Th>
                 <Th>Password</Th>
                 <Th>Address</Th>
+                <Th>Gaji Pokok</Th>
+                <Th>Role</Th>
                 <Th>Actions</Th>
               </Tr>
             </Thead>
