@@ -6,15 +6,12 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editUser: [
-        {
-          name: "",
-          username: "",
-          email: "",
-          password: "",
-          address: "",
-        },
-      ],
+      name: "",
+      username: "",
+      email: "",
+      password: "",
+      address: "",
+      userEdit: this.props.onEdit,
     };
   }
 
@@ -31,10 +28,16 @@ class Signup extends Component {
 
     const { name, username, email, address, password } = this.state;
 
-    if (username === "" || password === "" || email === "") {
+    if (
+      name === "" ||
+      username === "" ||
+      password === "" ||
+      email === "" ||
+      address === ""
+    ) {
       swal.fire("Opss!", "fields must not be empty", "error");
-    } else if (email.indexOf(" ") !== -1 || password.indexOf(" ") !== -1) {
-      swal("Opss!", "fields mus not contain spaces", "error");
+      // } else if (name.indexOf(" ") !== -1 || password.indexOf(" ") !== -1) {
+      //   swal("Opss!", "fields mus not contain spaces", "error");
     } else {
       this.props.handleSubmit(name, username, email, password, address);
       this.setState({
@@ -50,10 +53,13 @@ class Signup extends Component {
   };
 
   render() {
+    // console.log("cekkkkk:", this.state.userEdit);
+    // console.log("cek name:", this.state.userEdit[0]["name"]);
     const { name, username, email, password, address } = this.state;
-    const { loggedIn, datas } = this.props;
-    console.log("cek login :", datas);
-    if (!loggedIn) {
+    const onEdit = this.props;
+
+    console.log("cek login :", onEdit);
+    if (!this.state.userEdit.length) {
       return (
         <div className="container">
           <h1>Register</h1>
@@ -123,7 +129,7 @@ class Signup extends Component {
     } else {
       return (
         <div className="container">
-          <h1>Edit Data</h1>
+          <h1>Edit User</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group className="col-lg-6">
               <Form.Group className="mb-3">
@@ -132,7 +138,7 @@ class Signup extends Component {
                   name="name"
                   type="text"
                   placeholder="Name"
-                  value={name}
+                  value={this.state.userEdit[0]["name"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -142,7 +148,7 @@ class Signup extends Component {
                   name="username"
                   type="text"
                   placeholder="Username"
-                  value={username}
+                  value={this.state.userEdit[0]["username"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -153,7 +159,7 @@ class Signup extends Component {
                   name="email"
                   type="email"
                   placeholder="Enter email"
-                  value={email}
+                  value={this.state.userEdit[0]["email"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -164,7 +170,7 @@ class Signup extends Component {
                   name="address"
                   type="address"
                   placeholder="Address"
-                  value={address}
+                  value={this.state.userEdit[0]["address"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -175,7 +181,7 @@ class Signup extends Component {
                   name="password"
                   type="password"
                   placeholder="Password"
-                  value={password}
+                  value={this.state.userEdit[0]["password"]}
                   onChange={this.handleChange}
                 />
               </Form.Group>

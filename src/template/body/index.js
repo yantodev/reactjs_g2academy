@@ -7,6 +7,7 @@ class Body extends Component {
     super(props);
     this.state = {
       usersList: [],
+      usersEdit: [],
       statusEdit: false,
       index: 0,
     };
@@ -57,7 +58,12 @@ class Body extends Component {
     // console.log("jsondata :", dataJson);
 
     if (page === "registrasi")
-      return <Register handleSubmit={this.addNewUserHandler} />;
+      return (
+        <Register
+          onEdit={this.state.usersEdit}
+          handleSubmit={this.addNewUserHandler}
+        />
+      );
 
     if (page === "login")
       return (
@@ -95,6 +101,7 @@ class Body extends Component {
 
     console.log(`cek userlist`, editValue);
     this.setState({
+      usersEdit: editValue,
       name: editValue[0].name,
       username: editValue[0].username,
       email: editValue[0].email,
@@ -104,7 +111,6 @@ class Body extends Component {
     this.props.goToPage("registrasi");
     console.log("cek data id: ", id);
   };
-
   deleteUser = (id) => {
     console.log("cek body:", id);
     const newUser = this.state.usersList
