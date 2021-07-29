@@ -1,5 +1,13 @@
+/**
+ * Author @Eko_cahyanto
+ * Siswa @G2_Academy
+ * Batch @April2021
+ * Tutor @Wawan_setyawan
+ */
+
 import React, { Component } from "react";
-import { Register, Home, Login, Jsonplaceholder } from "../../page";
+import swal from "sweetalert2";
+import { Register, Home, Login, Jsonplaceholder, Admin } from "../../page";
 // import swal from "sweetalert";
 
 class Body extends Component {
@@ -51,7 +59,7 @@ class Body extends Component {
   };
   componentDidMount() {
     const urlFetch = fetch(
-      "https://raw.githubusercontent.com/cahya93/JsonAPI/cahya93-patch-1/users.json"
+      "https://raw.githubusercontent.com/cahya93/JsonAPI/9f5fd1931a2242ff15310c4fe5931c62ecae9b61/users.json"
     );
     urlFetch
       .then((res) => {
@@ -66,14 +74,22 @@ class Body extends Component {
             password: "12345",
             address: user.address,
             role: user.role,
+            absensi: user.absensi,
+            tunjangan: user.tunjangan,
             gajiPokok: user.gajiPokok,
+            status: user.status,
           };
         });
-        // console.log("JSONDATA:", dataArr);
+        console.log("JSONDATA:", dataArr);
         this.setState({
           usersList: dataArr,
         });
       })
+      // .then((resJson) => {
+      //   this.setState({
+      //     usersList: resJson,
+      //   });
+      // })
       .finally(() => this.setState({ loading: true }));
     console.log("cek loading :", this.state.loading);
   }
@@ -108,7 +124,17 @@ class Body extends Component {
           deleteUser={this.deleteUser}
         />
       );
-
+    if (page === "admin")
+      return (
+        <Admin
+          datas={this.props.datas}
+          dataUser={this.state.usersList}
+          editUser={this.editData}
+          deleteUser={this.deleteUser}
+        />
+      );
+    if (page === "logout")
+      return swal.fire("Yahhhh!!!...", "Anda baru saja logut...", "success");
     return (
       <Home
         loading={this.state.loading}

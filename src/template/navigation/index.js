@@ -18,22 +18,50 @@ class Nav extends Component {
   checkLogin = () => {
     const { goToPage, login } = this.props;
     return (
-      <Menu
-        isActivePage={this.checkActivePage("json")}
-        redirect={() =>
-          login
-            ? goToPage("json")
-            : Swal.fire("Opss!", "Please, login first!!!", "error")
-        }
-      >
-        JSON
-      </Menu>
+      <>
+        <Menu
+          isActivePage={this.checkActivePage("json")}
+          redirect={() =>
+            login
+              ? goToPage("json")
+              : Swal.fire("Opss!", "Please, login first!!!", "error")
+          }
+        >
+          JSON
+        </Menu>
+        {/* <Menu
+          isActivePage={this.checkActivePage("admin")}
+          redirect={() =>
+            login
+              ? goToPage("admin")
+              : Swal.fire("Opss!", "Please, login first!!!", "error")
+          }
+        >
+          Admin
+        </Menu> */}
+      </>
     );
   };
 
   checkLogout = () => {
     const { doLogin, login, goToPage } = this.props;
-    if (login) return <Menu redirect={() => doLogin(false)}>Logout</Menu>;
+    if (login)
+      return (
+        <>
+          <Menu
+            isActivePage={this.checkActivePage("admin")}
+            redirect={() => goToPage("admin")}
+          >
+            Admin
+          </Menu>
+          <Menu
+            isActivePage={this.checkActivePage("logout")}
+            redirect={() => goToPage("logout")}
+          >
+            Logout
+          </Menu>
+        </>
+      );
     return (
       <>
         <Menu

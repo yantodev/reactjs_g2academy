@@ -1,3 +1,9 @@
+/**
+ * Author @Eko_cahyanto
+ * Siswa @G2_Academy
+ * Batch @April_2021
+ * Tutor @Wawan_setyawan
+ */
 import React, { Component } from "react";
 import { Container, Row, Col, Card, Table, Button } from "react-bootstrap";
 import { Thead, Tr, Th, Tbody, Td } from "../../component/tabel";
@@ -16,13 +22,22 @@ class JsonPlaceholder extends Component {
       ],
     };
   }
-
+  cekRole = (e) => {
+    if (e === 1) {
+      return "HRD";
+    } else if (e === 2) {
+      return "Manager";
+    } else {
+      return "Karyawan";
+    }
+  };
   render() {
     let h1 = {
       textAlign: "center",
       fontWeight: "bolder",
     };
     const { dataJson, datas } = this.props;
+    console.log(`cek user login`, datas);
     return (
       <>
         <Container>
@@ -30,7 +45,9 @@ class JsonPlaceholder extends Component {
             <Col>
               {" "}
               <Card style={{ width: "18rem" }}>
-                <Card.Body>Your Login as {datas}</Card.Body>
+                <Card.Body>
+                  Your Login as {this.cekRole(datas[0]["role"])}
+                </Card.Body>
               </Card>
               <h1 style={h1}>Data JSON</h1>
               <Table striped bordered hover variant="dark">

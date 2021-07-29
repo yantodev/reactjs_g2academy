@@ -1,5 +1,12 @@
+/**
+ * Author @Eko_cahyanto
+ * Siswa @G2_Academy
+ * Batch @April_2021
+ * Tutor @Wawan_setyawan
+ */
+
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 class Login extends Component {
@@ -32,7 +39,14 @@ class Login extends Component {
         email === dataJson[i]["email"] &&
         password === dataJson[i]["password"]
       ) {
-        this.props.setLogin(true, email);
+        const editValue = dataJson
+          .filter((user) => user.email === email)
+          .map((filterData) => {
+            return filterData;
+          });
+
+        console.log(`cek userlist`, editValue);
+        this.props.setLogin(true, editValue);
         return Swal.fire("Yeahh...", "Login is success!", "success");
       }
     }
@@ -40,64 +54,42 @@ class Login extends Component {
   };
   render() {
     const { email, password } = this.state;
-    const loggedIn = this.props.loggedIn;
+    // const loggedIn = this.props.loggedIn;
 
-    if (!loggedIn) {
-      return (
-        <>
-          <div className="container">
-            <h1>Login</h1>
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Group className="col-lg-6">
-                <Form.Group className="mb-3">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="email"
-                    value={email}
-                    placeholder="email"
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    value={password}
-                    placeholder="Password"
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                  LOGIN
-                </Button>
+    return (
+      <>
+        <Container>
+          <h1>Login</h1>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group className="col-lg-6">
+              <Form.Group className="mb-3">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="email"
+                  value={email}
+                  placeholder="email"
+                  onChange={this.handleChange}
+                />
               </Form.Group>
-            </Form>
-          </div>
-        </>
-      );
-    } else {
-      const { password, email } = this.props.currentUser;
-
-      const containerStyling = {
-        margin: "30px 20%",
-        border: "#FF7700 solid 1px",
-        borderRadius: "6px",
-        textAlign: "center",
-      };
-
-      return (
-        <div style={containerStyling}>
-          <h2>Welcome Back</h2>
-          <div>
-            <p>Your email is: {email}</p>
-            <p>Your password is: {password}</p>
-          </div>
-          <button onClick={this.props.handleLog}>Logout</button>
-        </div>
-      );
-    }
+              <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={password}
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                LOGIN
+              </Button>
+            </Form.Group>
+          </Form>
+        </Container>
+      </>
+    );
   }
 }
 export default Login;

@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       currentPage: "home",
       loginStatus: false,
-      email: "",
+      userLogin: [],
     };
   }
   changePage = (page) => {
@@ -16,11 +16,12 @@ class App extends Component {
       currentPage: page,
     });
   };
-  changeStatusLogin = (status, email) => {
+
+  changeStatusLogin = (status, dataLogin) => {
     this.setState({
       loginStatus: status,
-      email: email,
-      currentPage: "json",
+      userLogin: dataLogin,
+      currentPage: "admin",
     });
   };
 
@@ -38,7 +39,7 @@ class App extends Component {
           login={this.state.session}
           goToPage={this.changePage}
           doLogin={this.changeStatusLogin}
-          datas={this.state.email}
+          datas={this.state.userLogin}
           loggedIn={this.state.loginStatus}
         />
       </>
