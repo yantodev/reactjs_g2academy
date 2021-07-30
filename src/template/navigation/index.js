@@ -44,7 +44,7 @@ class Nav extends Component {
   };
 
   checkLogout = () => {
-    const { doLogin, login, goToPage } = this.props;
+    const { login, goToPage } = this.props;
     if (login)
       return (
         <>
@@ -85,9 +85,9 @@ class Nav extends Component {
     const { goToPage } = this.props;
     return (
       <>
-        <div class="topnav">
+        <div className="topnav">
           <div className="logo">Yanto.web</div>
-          <div class="topnav-right">
+          <div className="topnav-right">
             <Menu
               isActivePage={this.checkActivePage("home")}
               redirect={() => goToPage("home")}

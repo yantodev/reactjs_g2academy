@@ -39,12 +39,12 @@ class Home extends Component {
   renderUsers = () => {
     const { dataUser, loading } = this.props;
     console.log(`cek render`, loading);
-    if (!loading)
-      return (
-        <Td align="center" colSpan="8">
-          <img src="../../image/loading.gif"></img>
-        </Td>
-      );
+    // if (!loading)
+    //   return (
+    //     <Td align="center" colSpan="8">
+    //       <img src="../../image/loading.gif"></img>
+    //     </Td>
+    //   );
     return dataUser.map((data, index) => {
       return (
         <Tr key={data.id}>
@@ -132,16 +132,16 @@ class Home extends Component {
                 <Card.Title>
                   <Table>
                     <Tbody>
-                      <tr>
-                        <td>ID User</td>
-                        <td width="10px">:</td>
-                        <td>{data[0]["id"]}</td>
-                      </tr>
-                      <tr>
-                        <td>Name</td>
-                        <td width="10px">:</td>
-                        <td>{data[0]["name"]}</td>
-                      </tr>
+                      <Tr>
+                        <Td>ID User</Td>
+                        <Td width="10px">:</Td>
+                        <Td>{data[0]["id"]}</Td>
+                      </Tr>
+                      <Tr>
+                        <Td>Name</Td>
+                        <Td width="10px">:</Td>
+                        <Td>{data[0]["name"]}</Td>
+                      </Tr>
                       <tr>
                         <td>Email</td>
                         <td width="10px">:</td>
