@@ -84,16 +84,21 @@ class Nav extends Component {
   render() {
     const { goToPage } = this.props;
     return (
-      <div className="nav">
-        <Menu
-          isActivePage={this.checkActivePage("home")}
-          redirect={() => goToPage("home")}
-        >
-          Home
-        </Menu>
-        {this.checkLogin()}
-        {this.checkLogout()}
-      </div>
+      <>
+        <div class="topnav">
+          <div className="logo">Yanto.web</div>
+          <div class="topnav-right">
+            <Menu
+              isActivePage={this.checkActivePage("home")}
+              redirect={() => goToPage("home")}
+            >
+              Home
+            </Menu>
+            {this.checkLogin()}
+            {this.checkLogout()}
+          </div>
+        </div>
+      </>
     );
   }
 }

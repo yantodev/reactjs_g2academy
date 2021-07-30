@@ -124,6 +124,7 @@ class Admin extends Component {
   buttonBack = () => {
     this.setState({
       detail: false,
+      editUser: false,
     });
   };
   render() {
@@ -376,13 +377,6 @@ class Admin extends Component {
           );
         }
       }
-    // if (datas[0]["role"] === 2)
-    //   return (
-    //     <Container>
-    //       <h1 style={h1}> Your Login as {this.cekRole(datas[0]["role"])}</h1>
-    //       <h1 style={h1}> Welcome, {datas[0]["name"]}</h1>
-    //     </Container>
-    //   );
 
     if (datas[0]["role"] === 3)
       return (
